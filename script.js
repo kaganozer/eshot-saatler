@@ -99,11 +99,10 @@ const otobusPromises = otobusler.map(async (otobus) => {
         const saatler = hareketSaatleri[`HareketSaatleri${currentDay}`].filter(sefer => {
             const rangeStart = currentTime.getTime() - 600000;
             const rangeEnd = currentTime.getTime() + 7200000;
-            const [ hour, minute ] = sefer["DonusSaat"].split(":").map(n => Number(n));
+            const [ hour, minute ] = sefer["GidisSaat"].split(":").map(n => Number(n));
             const otobusSaat = new Date();
             otobusSaat.setHours(hour, minute);
 
-            // return true;
             return (rangeStart <= otobusSaat.getTime()) && (otobusSaat.getTime() <= rangeEnd);
         }).map(sefer => { return { saatGidis: sefer["GidisSaat"], saatDonus: sefer["DonusSaat"] } });  
         return {
@@ -119,9 +118,3 @@ const root = ReactDOM.createRoot(domContainer);
 Promise.all(otobusPromises).then(otobusData => {
     root.render(<OtobusTables otobusler={otobusData.filter(e => Boolean(e))}/>);
 });
-
-navigator.geolocation.getCurrentPosition(
-    (e) => {console.log(e)},
-    () => {},
-    { enableHighAccuracy: false, timeout: 10000 }
-);
