@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#0c5893" />
+    <title>Otobüs Saatleri</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
 </head>
 <body>
     <div class="current-time"></div>
-    <div class="otobus-saatleri"></div>
+    <div class="otobus-saatleri">
+        <div>
+            <div class="loader">Yükleniyor...</div>
+        </div>
+    </div>
+    <div class="input-field">
+        <input type="text" id="otobus-search" autocomplete="off" placeholder="Otobüs ara...">
+        <button class="search">Ara</button>
+    </div>
+    <div class="otobus-saatleri search"></div>
 
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script type="text/babel" src="script.js"></script>
 </body>

@@ -1,13 +1,13 @@
 :root {
-    --color-dark: #2974ad;
-    --color-light: #add2ee;
-    --color-bg: #c9e4f8;
-    --color-table: #54a1dc;
+    --color-dark: #0c5893;
+    --color-light: #86c4f3;
+    --color-bg: #c0ddf4;
+    --color-table: #1da9d7;
 }
 
 * {margin: 0; transition: 0.2s; box-sizing: border-box;}
 *::before, *::after {transition: 0.2s}
-html, body, .otobus-saatleri {width: 100%; height: 100%;}
+html, body {width: 100%; height: 100%;}
 
 body {
     font-family: "Raleway";
@@ -20,23 +20,32 @@ body {
 
 .current-time {
     width: min(500px, 100%);
+    font-size: 2rem;
 }
 
+.otobus-saatleri {width: 100%;}
 .otobus-saatleri > div {
     display: grid; place-items: center;
     gap: 10px;
 }
 
-.otobus-saatleri > div details {
+.otobus-saatleri > div :is(details, div) {
     background-color: var(--color-light);
-    border: 2px solid var(--color-dark);
-    border-radius: 5px; padding: 5px;
+    border-radius: 5px; padding: 15px;
     width: min(500px, 100%);
 }
+.otobus-saatleri > div details:not([open]) {padding-bottom: 10px;}
+
+.otobus-saatleri > div .loader {
+    opacity: 1;
+    animation: fade 1.5s infinite ease-in-out;
+}
+@keyframes fade { 50% {opacity: 0.5;} }
 
 .otobus-saatleri > div details summary {
-    position: relative; padding: 5px;
+    position: relative; padding-bottom: 5px;
     list-style: none; outline: none;
+    cursor: pointer;
 }
 
 .otobus-saatleri > div details summary::before {
@@ -50,20 +59,35 @@ body {
 
 .otobus-saatleri > div details table {
     width: 100%; margin-top: 10px;
-    table-layout: fixed;
-    border-collapse: collapse;
+    table-layout: fixed; border-spacing: 10px;
 }
 
-
-.otobus-saatleri > div details table :is(th, td) {
-    padding: 5px;
-    border: 2px solid var(--color-table)
-}
+.otobus-saatleri > div details table :is(th, td) {padding: 5px;}
 .otobus-saatleri > div details table thead tr th {
     text-transform: uppercase;
     padding: 10px 10px 15px;
 }
 
-.otobus-saatleri > div details table tbody tr:nth-child(even) td {
+.otobus-saatleri > div details table tbody tr td {
     background-color: var(--color-table);
+    border-radius: 5px; padding: 10px;
 }
+
+.input-field {
+    width: min(500px, 100%);
+    display: flex;
+}
+
+.input-field input {
+    width: 80%; padding: 15px;
+    font-family: "Raleway"; font-weight: bold;
+    border: none; outline: none;
+}
+
+.input-field button {
+    width: 20%; padding: 15px;
+    font-family: "Raleway";
+    font-weight: bold; color: #c9e4f8;
+    background-color: var(--color-dark);
+    border: none; outline: none;
+}.input-field button:hover {background-color: var(--color-table); cursor: pointer;}
